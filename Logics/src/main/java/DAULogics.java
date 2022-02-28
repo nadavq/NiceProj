@@ -3,7 +3,7 @@ import java.util.LinkedList;
 
 public class DAULogics implements IDAULogics{
 
-    private static final LinkedList<IDailyActiveUsers> allUsersCountsByDates = new LinkedList<>();
+    private final LinkedList<IDailyActiveUsers> allUsersCountsByDates = new LinkedList<>();
 
     public LinkedList<IDailyActiveUsers> countDAU(InputStream fin) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(fin));
