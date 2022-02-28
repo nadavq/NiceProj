@@ -1,16 +1,16 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class DailyActiveUsers {
+public class DailyActiveUsers implements IDailyActiveUsers{
 
     private final String date;
     private final Set<Integer> users;
     private int userCount;
 
     public DailyActiveUsers(String date) {
-        users = new HashSet<>();
+        this.users = new HashSet<>();
         this.date = date;
-        userCount = 0;
+        this.userCount = 0;
     }
 
     public String getDate() {

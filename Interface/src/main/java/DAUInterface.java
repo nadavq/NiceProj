@@ -1,5 +1,4 @@
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -22,20 +21,22 @@ searched the map for the requested date.
  */
 
 public class DAUInterface {
+
     public static void main(String[] args) throws IOException {
-        LinkedList<DailyActiveUsers> DAUList = countDAU();
+        LinkedList<IDailyActiveUsers> DAUList = countDAU();
         printList(DAUList);
     }
 
-    public static LinkedList<DailyActiveUsers> countDAU() throws IOException {
+    public static LinkedList<IDailyActiveUsers> countDAU() throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the input file path:");
         String path = scanner.nextLine();
         InputStream fin = new FileInputStream(path);
-        return DAULogics.countDAU(fin);
+        IDAULogics dauLogics = new DAULogics();
+        return dauLogics.countDAU(fin);
     }
 
-    public static void printList(LinkedList<DailyActiveUsers> list){
+    public static void printList(LinkedList<IDailyActiveUsers> list){
         if(list == null)
             System.out.println("No data found in file");
         else list.forEach(dailyActiveUsers -> System.out.println(dailyActiveUsers.getDate() + " : " + dailyActiveUsers.getUserCount()));

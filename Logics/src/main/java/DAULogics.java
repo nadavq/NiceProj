@@ -1,11 +1,11 @@
 import java.io.*;
 import java.util.LinkedList;
 
-public class DAULogics {
+public class DAULogics implements IDAULogics{
 
-    private static final LinkedList<DailyActiveUsers> allUsersCountsByDates = new LinkedList<>();
+    private static final LinkedList<IDailyActiveUsers> allUsersCountsByDates = new LinkedList<>();
 
-    public static LinkedList<DailyActiveUsers> countDAU(InputStream fin) throws IOException {
+    public LinkedList<IDailyActiveUsers> countDAU(InputStream fin) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(fin));
 
         if(!reader.ready())
@@ -15,7 +15,7 @@ public class DAULogics {
         int currentID;
 
         currentLine = reader.readLine();
-        DailyActiveUsers dailyActiveUsers = addFirstUser(currentLine);
+        IDailyActiveUsers dailyActiveUsers = addFirstUser(currentLine);
         currentDate = dailyActiveUsers.getDate();
 
         while(reader.ready()){
@@ -33,23 +33,23 @@ public class DAULogics {
         return allUsersCountsByDates;
     }
 
-    public static String extractDate(String currentLine){
+    public String extractDate(String currentLine){
         String []idDateAndTime = currentLine.split(",");
         return idDateAndTime[1].split(" ")[0];
     }
 
-    public static int extractID(String currentLine){
+    public int extractID(String currentLine){
         return Integer.parseInt(currentLine.split(",")[0]);
     }
 
-    public static DailyActiveUsers addFirstUser(String currentLine){
+    public IDailyActiveUsers addFirstUser(String currentLine){
         String currentDate = extractDate(currentLine);
-        DailyActiveUsers dailyActiveUsers = new DailyActiveUsers(currentDate);
+        IDailyActiveUsers dailyActiveUsers = new DailyActiveUsers(currentDate);
         dailyActiveUsers.addUser(extractID(currentLine));
         return  dailyActiveUsers;
     }
 
-    public static void addUserIfNeeded(int id, DailyActiveUsers dailyActiveUsers){
+    public void addUserIfNeeded(int id, IDailyActiveUsers dailyActiveUsers){
         if(!dailyActiveUsers.containsUser(id))
             dailyActiveUsers.addUser(id);
     }
