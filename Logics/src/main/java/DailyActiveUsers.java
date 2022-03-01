@@ -3,13 +3,11 @@ import java.util.Set;
 
 public class DailyActiveUsers implements IDailyActiveUsers{
 
-    private final String date;
     private final Set<Integer> users;
     private int userCount;
 
-    public DailyActiveUsers(String date) {
+    public DailyActiveUsers() {
         this.users = new HashSet<>();
-        this.date = date;
         this.userCount = 0;
     }
 

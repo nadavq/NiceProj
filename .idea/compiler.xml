@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Logics" />
-        <module name="Main" />
         <module name="UserInterface" />
+        <module name="DAUMainMod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

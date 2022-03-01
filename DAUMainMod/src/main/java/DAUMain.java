@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Main {
+public class DAUMain {
 
     public static void main(String[] args) throws IOException {
         try {

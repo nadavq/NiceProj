@@ -21,7 +21,7 @@ public class DAULogics implements IDAULogics{
             currentID = extractID(currentLine);
             currentDate = extractDate(currentLine);
             if(!allUsersCountsByDates.containsKey(currentDate)){
-                dailyActiveUsers = new DailyActiveUsers(currentDate);
+                dailyActiveUsers = new DailyActiveUsers();
                 allUsersCountsByDates.put(currentDate, dailyActiveUsers);
             }
             else dailyActiveUsers = allUsersCountsByDates.get(currentDate);
