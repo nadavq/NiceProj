@@ -1,3 +1,5 @@
+package Logics;
+
 public interface IDailyActiveUsers {
 
     boolean containsUser(int id);

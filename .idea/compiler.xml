@@ -6,12 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Logics" />
         <module name="UserInterface" />
-        <module name="DAUMainMod" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="DAUMainMod" target="8" />
+      <module name="Logics" target="8" />
       <module name="UserInterface" target="8" />
     </bytecodeTargetLevel>
   </component>
