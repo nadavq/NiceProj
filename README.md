@@ -1,5 +1,5 @@
 # NiceProject
-run - DAUInterface in the Interface module
+run - Main in the Interface module
 
 
 

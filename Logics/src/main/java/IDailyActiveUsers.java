@@ -4,7 +4,5 @@ public interface IDailyActiveUsers {
 
     void addUser(int id);
 
-    String getDate();
-
     int getUserCount();
 }

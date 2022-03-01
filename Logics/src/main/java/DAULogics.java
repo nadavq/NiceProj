@@ -1,11 +1,12 @@
 import java.io.*;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DAULogics implements IDAULogics{
 
-    private final LinkedList<IDailyActiveUsers> allUsersCountsByDates = new LinkedList<>();
+    private final Map<String, IDailyActiveUsers> allUsersCountsByDates = new HashMap<>();
 
-    public LinkedList<IDailyActiveUsers> countDAU(InputStream fin) throws IOException {
+    public Map<String, IDailyActiveUsers> countAllDAU(InputStream fin) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(fin));
 
         if(!reader.ready())
@@ -13,23 +14,19 @@ public class DAULogics implements IDAULogics{
 
         String currentLine, currentDate;
         int currentID;
-
-        currentLine = reader.readLine();
-        IDailyActiveUsers dailyActiveUsers = addFirstUser(currentLine);
-        currentDate = dailyActiveUsers.getDate();
+        IDailyActiveUsers dailyActiveUsers;
 
         while(reader.ready()){
             currentLine = reader.readLine();
             currentID = extractID(currentLine);
-            String extractedDate = extractDate(currentLine);
-            if(!currentDate.equals(extractedDate)){
-                allUsersCountsByDates.add(dailyActiveUsers);
-                currentDate = extractedDate;
+            currentDate = extractDate(currentLine);
+            if(!allUsersCountsByDates.containsKey(currentDate)){
                 dailyActiveUsers = new DailyActiveUsers(currentDate);
+                allUsersCountsByDates.put(currentDate, dailyActiveUsers);
             }
+            else dailyActiveUsers = allUsersCountsByDates.get(currentDate);
             addUserIfNeeded(currentID,dailyActiveUsers);
         }
-        allUsersCountsByDates.add(dailyActiveUsers);
         return allUsersCountsByDates;
     }
 
@@ -40,13 +37,6 @@ public class DAULogics implements IDAULogics{
 
     public int extractID(String currentLine){
         return Integer.parseInt(currentLine.split(",")[0]);
-    }
-
-    public IDailyActiveUsers addFirstUser(String currentLine){
-        String currentDate = extractDate(currentLine);
-        IDailyActiveUsers dailyActiveUsers = new DailyActiveUsers(currentDate);
-        dailyActiveUsers.addUser(extractID(currentLine));
-        return  dailyActiveUsers;
     }
 
     public void addUserIfNeeded(int id, IDailyActiveUsers dailyActiveUsers){

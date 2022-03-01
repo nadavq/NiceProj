@@ -13,17 +13,11 @@ public class DailyActiveUsers implements IDailyActiveUsers{
         this.userCount = 0;
     }
 
-    public String getDate() {
-        return date;
-    }
-
     public int getUserCount() {
         return userCount;
     }
 
-    public boolean containsUser(int id){
-        return users.contains(id);
-    }
+    public boolean containsUser(int id){ return users.contains(id); }
 
     public void addUser(int id){
         users.add(id);

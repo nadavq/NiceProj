@@ -7,8 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Logics" />
-        <module name="Interface" />
+        <module name="Main" />
+        <module name="UserInterface" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="UserInterface" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
